@@ -44,7 +44,6 @@ export default function CreatePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 py-8 px-4">
       <div className="max-w-5xl mx-auto space-y-8">
-        {/* Header */}
         <div className="flex items-center justify-between">
           <Link href="/">
             <Button variant="ghost" size="sm">
@@ -57,24 +56,22 @@ export default function CreatePage() {
             variant={kidsMode ? "default" : "outline"}
             size="sm"
             onClick={() => setKidsMode(!kidsMode)}
-            className={kidsMode ? "bg-pink-500 hover:bg-pink-600" : ""}
+            className={kidsMode ? "bg-transparent text-blue-700 border-2 border-blue-700 hover:bg-blue-700 hover:text-white " : "bg-blue-700 text-white hover:bg-transparent border-2 border-blue-700 hover:text-blue-700 animate-pulse"}
           >
             <Baby className="mr-2 h-4 w-4" />
             Kids Mode
           </Button>
         </div>
 
-        {/* Page Title */}
         <div className="text-center">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">
             Build Your Story
           </h1>
           <p className="text-gray-600">
-            Select your story elements and let AI create magic ✨
+            Select your story elements and let's craft a fable magic✨
           </p>
         </div>
 
-        {/* Template Selection */}
         <div>
           <h2 className="text-xl font-semibold mb-4 text-gray-700">
             Choose Story Template
@@ -99,34 +96,29 @@ export default function CreatePage() {
           </div>
         </div>
 
-        {/* Character Selection */}
         <CharacterSelect
           value={character}
           onChange={setCharacter}
           kidsMode={kidsMode}
         />
 
-        {/* Setting Selection */}
         <SettingSelect
           value={setting}
           onChange={setSetting}
           kidsMode={kidsMode}
         />
-
-        {/* Twist Selection */}
         <TwistSelect
           value={twist}
           onChange={setTwist}
           kidsMode={kidsMode}
         />
 
-        {/* Generate Button */}
         <GenerateButton
           onClick={handleGenerate}
           disabled={!isComplete}
         />
 
-        {/* Progress Indicator */}
+
         {!isComplete && (
           <div className="text-center text-sm text-gray-500">
             {!character && "→ Pick a character"}

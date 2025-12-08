@@ -3,14 +3,14 @@ import { Sparkles, Github, Twitter, Instagram, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50 border-t mt-28">
-      <div className="container mx-auto px-6 py-14">
+    <footer className=" border-t mt-28">
+      <div className="container mx-auto px-6 py-14 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
 
-          {/* Brand */}
+
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-2xl">
-              <Sparkles className="text-purple-600" />
+              <Sparkles className="text-blue-700" />
               StoryForge
             </Link>
             <p className="text-gray-600 max-w-xs text-sm leading-relaxed">
@@ -21,13 +21,13 @@ export default function Footer() {
             {/* Socials */}
             <div className="flex gap-3">
               <Link href="#">
-                <Github className="h-5 w-5 text-gray-700 hover:text-purple-600" />
+                <Github className="h-5 w-5 text-gray-700 hover:text-blue-700" />
               </Link>
               <Link href="#">
-                <Twitter className="h-5 w-5 text-gray-700 hover:text-purple-600" />
+                <Twitter className="h-5 w-5 text-gray-700 hover:text-blue-700" />
               </Link>
               <Link href="#">
-                <Instagram className="h-5 w-5 text-gray-700 hover:text-purple-600" />
+                <Instagram className="h-5 w-5 text-gray-700 hover:text-blue-700" />
               </Link>
             </div>
           </div>
@@ -70,9 +70,9 @@ export default function Footer() {
               />
               <button
                 type="submit"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 rounded-r-lg text-sm flex items-center gap-2"
+                className="bg-blue-700 text-white px-4 rounded-r-lg text-sm flex items-center gap-2"
               >
-                <Mail className="w-4 h-4" />
+
                 Subscribe
               </button>
             </form>

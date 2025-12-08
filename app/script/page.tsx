@@ -123,7 +123,7 @@ export default function ScriptGeneratorPage() {
                 size="lg"
                 onClick={handleGenerate}
                 disabled={loading || !prompt.trim()}
-                className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-lg py-6"
+                className="w-full bg-blue-700 hover:blue-700 text-lg py-6"
               >
                 {loading ? (
                   <>

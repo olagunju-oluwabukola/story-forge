@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Loader2, RefreshCw, Copy } from "lucide-react";
-import { generateStoryPrompts, generateQuickStory } from "@/lib/generate-story-card";
+import { Sparkles, Loader2, RefreshCw, Copy, AlertCircle } from "lucide-react";
+import { generateStoryPrompts, generateQuickStory, validateStoryPrompt } from "@/lib/generate-story-card";
 import Why from "@/components/why-section"
 import HowItWorks from "@/components/how-it-works";
+import FeatureCards from "@/components/features";
+import FadeInWhenVisible from "@/components/fadeIn-animation";
+
 
 interface StoryPrompt {
   title: string;
@@ -19,8 +22,8 @@ export default function Home() {
   const [loadingSuggestions, setLoadingSuggestions] = useState(true);
   const [generatingStory, setGeneratingStory] = useState(false);
   const [generatedStory, setGeneratedStory] = useState("");
+  const [error, setError] = useState("");
 
-  // Generate suggestions on mount
   useEffect(() => {
     loadSuggestions();
   }, []);
@@ -32,7 +35,7 @@ export default function Home() {
       setSuggestions(prompts);
     } catch (error) {
       console.error("Failed to load suggestions:", error);
-      // Fallback suggestions
+
       setSuggestions([
         { title: "The Lost Key", description: "A mysterious key opens doors to parallel worlds" },
         { title: "Midnight Train", description: "A train that only appears at midnight takes passengers to their memories" },
@@ -46,15 +49,27 @@ export default function Home() {
   const handleGenerate = async () => {
     if (!promptInput.trim()) return;
 
+    // Clear previous errors
+    setError("");
+
+    // Validate the prompt before generating
+    const validation = validateStoryPrompt(promptInput);
+    if (!validation.valid) {
+      setError(validation.message || "Invalid story prompt");
+      return;
+    }
+
     setGeneratingStory(true);
     setGeneratedStory("");
 
     try {
       const story = await generateQuickStory(promptInput);
       setGeneratedStory(story);
+      setError(""); // Clear any errors on success
     } catch (error) {
       console.error("Failed to generate story:", error);
-      alert("Failed to generate story. Please try again.");
+      const errorMessage = error instanceof Error ? error.message : "Failed to generate story. Please try again.";
+      setError(errorMessage);
     } finally {
       setGeneratingStory(false);
     }
@@ -62,15 +77,18 @@ export default function Home() {
 
   const handleSuggestionClick = async (suggestion: StoryPrompt) => {
     setPromptInput(suggestion.description);
+    setError("");
     setGeneratingStory(true);
     setGeneratedStory("");
 
     try {
       const story = await generateQuickStory(suggestion.description);
       setGeneratedStory(story);
+      setError("");
     } catch (error) {
       console.error("Failed to generate story:", error);
-      alert("Failed to generate story. Please try again.");
+      const errorMessage = error instanceof Error ? error.message : "Failed to generate story. Please try again.";
+      setError(errorMessage);
     } finally {
       setGeneratingStory(false);
     }
@@ -85,7 +103,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      <div className="container mx-auto px-4 pt-32 text-center max-w-4xl">
+      <FadeInWhenVisible>
+           <div className="container mx-auto px-4 pt-32 text-center max-w-4xl">
         <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
           AI Story Builder — Create Stories With One Click
         </h1>
@@ -95,17 +114,25 @@ export default function Home() {
           and let AI build a unique story filled with imagination and creativity.
         </p>
       </div>
+      </FadeInWhenVisible>
 
-      <div className="container mx-auto px-4 max-w-5xl mt-14">
+<FadeInWhenVisible>
+  <div className="container mx-auto px-4 max-w-5xl mt-14">
         <div className="bg-white rounded-2xl border shadow-md p-6 space-y-4">
           <div className="flex flex-col sm:flex-row gap-3">
             <input
               type="text"
               placeholder="Write a short story prompt…"
               value={promptInput}
-              onChange={(e) => setPromptInput(e.target.value)}
+              onChange={(e) => {
+                setPromptInput(e.target.value);
+                // Clear error when user starts typing
+                if (error) setError("");
+              }}
               onKeyPress={handleKeyPress}
-              className="flex-1 border border-dashed rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-700 "
+              className={`flex-1 border border-dashed rounded-lg px-4 py-3 text-gray-700 focus:outline-none focus:ring-2 ${
+                error ? 'border-red-300 focus:ring-red-500' : 'focus:ring-blue-700'
+              }`}
               disabled={generatingStory}
             />
 
@@ -129,9 +156,20 @@ export default function Home() {
             </Button>
           </div>
 
+          {/* Error Message */}
+          {error && (
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
+              <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h4 className="font-semibold text-red-900 text-sm">Invalid Request</h4>
+                <p className="text-red-700 text-sm mt-1">{error}</p>
+              </div>
+            </div>
+          )}
 
+          {/* Generated Story */}
           {generatedStory && (
-            <div className="mt-6 p-6  rounded-xl border border-blue-100">
+            <div className="mt-6 p-6 rounded-xl border border-blue-100">
               <h3 className="font-bold text-lg text-gray-900 mb-3">Your Story:</h3>
               <div className="prose prose-sm max-w-none">
                 <p className="whitespace-pre-line text-gray-800 leading-relaxed">
@@ -142,14 +180,19 @@ export default function Home() {
                 <Button
                   size="sm"
                   variant="outline"
-                  onClick={() => navigator.clipboard.writeText(generatedStory)}
+                  onClick={() => {
+                    navigator.clipboard.writeText(generatedStory);
+                    // Optional: Show a toast notification
+                  }}
                 >
-                  <Copy/>
+                  <Copy className="mr-2 h-4 w-4" />
                   Copy
                 </Button>
               </div>
             </div>
           )}
+
+          {/* Story Suggestions */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold text-gray-700">
@@ -189,21 +232,29 @@ export default function Home() {
               </div>
             )}
           </div>
-
         </div>
-
       </div>
-  <div className="my-6 md:my-14 ">
- <Why/>
-</div>
+</FadeInWhenVisible>
 
+<FadeInWhenVisible>
  <div className="my-6 md:my-14">
- <HowItWorks/>
-</div>
+        <Why/>
+      </div>
+</FadeInWhenVisible>
 
+<FadeInWhenVisible>
+ <div className="my-6 md:my-14">
+        <FeatureCards/>
+      </div>
+</FadeInWhenVisible>
 
- </div>
+<FadeInWhenVisible>
+ <div className="my-6 md:my-14">
+        <HowItWorks/>
+      </div>
+</FadeInWhenVisible>
 
+    </div>
   );
 }
 

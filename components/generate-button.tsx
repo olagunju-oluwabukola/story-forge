@@ -13,7 +13,7 @@ export default function GenerateButton({ onClick, disabled }: GenerateButtonProp
         size="lg"
         onClick={onClick}
         disabled={disabled}
-        className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 hover:from-purple-700 hover:via-pink-700 hover:to-blue-700 text-lg py-7 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105"
+        className="w-full  bg-blue-700 text-lg py-7 shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:scale-105 hover:bg-blue-700"
       >
         <Wand2 className="mr-2 h-6 w-6 animate-pulse" />
         Generate My Story
