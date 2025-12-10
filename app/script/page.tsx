@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Film, Download, Copy, Sparkles, ArrowLeft } from 'lucide-react';
+import { Loader2, Film, Download, Copy, Sparkles, ArrowLeft, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { generateScript } from '@/lib/generate-script';
 
@@ -71,7 +71,7 @@ export default function ScriptGeneratorPage() {
   const selectedType = SCRIPT_TYPES.find(t => t.id === scriptType);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-8 px-4">
+    <div className="min-h-screen  py-8 px-4">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
@@ -84,7 +84,7 @@ export default function ScriptGeneratorPage() {
           </div>
           <Link href="/">
             <Button variant="outline">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="mr-2 h-4 w-4" />
               Home
             </Button>
           </Link>
@@ -118,12 +118,12 @@ export default function ScriptGeneratorPage() {
                   <AlertDescription>{error}</AlertDescription>
                 </Alert>
               )}
-
-              <Button
+{ prompt.trim() &&(
+       <Button
                 size="lg"
                 onClick={handleGenerate}
                 disabled={loading || !prompt.trim()}
-                className="w-full bg-blue-700 hover:blue-700 text-lg py-6"
+                className="w-full bg-blue-700 hover:bg-blue-700 text-lg py-6"
               >
                 {loading ? (
                   <>
@@ -137,9 +137,11 @@ export default function ScriptGeneratorPage() {
                   </>
                 )}
               </Button>
+)
+}
+
             </div>
 
-            {/* Settings Sidebar */}
             <div className="space-y-6">
               <Card>
                 <CardHeader>

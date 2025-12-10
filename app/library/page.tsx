@@ -67,19 +67,19 @@ export default function LibraryPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 flex items-center justify-center">
+      <div className="min-h-screen  flex items-center justify-center">
         <div className="text-gray-600">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 py-8 px-4">
+    <div className="min-h-screen  py-8 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-2">My Story Library</h1>
+            <h1 className="text-4xl font-bold  mb-2">My Story Library</h1>
             <p className="text-gray-600">
               {stories.length} {stories.length === 1 ? 'story' : 'stories'} saved
             </p>
@@ -108,13 +108,13 @@ export default function LibraryPage() {
           </Card>
         ) : (
           <div className="grid lg:grid-cols-3 gap-6">
-            {/* Stories List */}
+
             <div className="lg:col-span-1 space-y-4">
               {stories.map((story, index) => (
                 <Card
                   key={index}
                   className={`cursor-pointer transition-all hover:shadow-lg ${
-                    selectedStory?.title === story.title ? 'ring-2 ring-purple-500' : ''
+                    selectedStory?.title === story.title ? 'ring-2 ring-blue-500' : ''
                   }`}
                   onClick={() => setSelectedStory(story)}
                 >
@@ -130,7 +130,7 @@ export default function LibraryPage() {
                           {story.template}
                         </Badge>
                         {story.kidsMode && (
-                          <Badge variant="outline" className="text-xs bg-pink-50">
+                          <Badge variant="outline" className="text-xs ">
                             Kids
                           </Badge>
                         )}
@@ -159,7 +159,7 @@ export default function LibraryPage() {
               ))}
             </div>
 
-            {/* Story Viewer */}
+
             <div className="lg:col-span-2">
               {selectedStory ? (
                 <Card>
@@ -170,7 +170,7 @@ export default function LibraryPage() {
                       <Badge variant="outline">{selectedStory.character}</Badge>
                       <Badge variant="outline">{selectedStory.setting}</Badge>
                       {selectedStory.kidsMode && (
-                        <Badge className="bg-pink-500">Kids Mode</Badge>
+                        <Badge className="">Kids Mode</Badge>
                       )}
                     </div>
                   </CardHeader>
@@ -181,9 +181,9 @@ export default function LibraryPage() {
                       </p>
 
                       {selectedStory.moral && (
-                        <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded">
-                          <p className="font-semibold text-amber-900 mb-1">Moral:</p>
-                          <p className="text-amber-800">{selectedStory.moral}</p>
+                        <div className="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                          <p className="font-semibold text-blue-900 mb-1">Moral:</p>
+                          <p className="text-blue-950">{selectedStory.moral}</p>
                         </div>
                       )}
                     </div>
