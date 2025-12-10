@@ -94,7 +94,7 @@ export default function TwistSelect({ value, onChange, kidsMode = false }: Twist
 
         return (
           <div key={index} style={{ overflow: 'hidden', marginBottom: 24 }}>
-            <div style={rowStyle(direction, pausedRows[index])}>
+      <div style={rowStyle(direction, pausedRows[index]) as React.CSSProperties}>
               {seamlessRow.map((twist, idx) => (
                 <Card
                   key={`${twist.id}-${idx}`}
