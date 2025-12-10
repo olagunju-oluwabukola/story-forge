@@ -126,7 +126,7 @@ export default function Home() {
               value={promptInput}
               onChange={(e) => {
                 setPromptInput(e.target.value);
-                // Clear error when user starts typing
+
                 if (error) setError("");
               }}
               onKeyPress={handleKeyPress}
@@ -156,7 +156,7 @@ export default function Home() {
             </Button>
           </div>
 
-          {/* Error Message */}
+
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 flex items-start gap-3">
               <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
@@ -167,8 +167,7 @@ export default function Home() {
             </div>
           )}
 
-          {/* Generated Story */}
-          {generatedStory && (
+           {generatedStory && (
             <div className="mt-6 p-6 rounded-xl border border-blue-100">
               <h3 className="font-bold text-lg text-gray-900 mb-3">Your Story:</h3>
               <div className="prose prose-sm max-w-none">
@@ -182,7 +181,7 @@ export default function Home() {
                   variant="outline"
                   onClick={() => {
                     navigator.clipboard.writeText(generatedStory);
-                    // Optional: Show a toast notification
+
                   }}
                 >
                   <Copy className="mr-2 h-4 w-4" />
@@ -192,7 +191,7 @@ export default function Home() {
             </div>
           )}
 
-          {/* Story Suggestions */}
+
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold text-gray-700">

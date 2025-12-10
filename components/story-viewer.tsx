@@ -10,7 +10,6 @@ interface StoryViewerProps {
 export default function StoryViewer({ story, kidsMode }: StoryViewerProps) {
   return (
     <div className="space-y-6">
-      {/* Main Story Card */}
       <Card>
         <CardContent className="p-8 md:p-12">
           <article className="prose prose-lg max-w-none">
@@ -31,19 +30,19 @@ export default function StoryViewer({ story, kidsMode }: StoryViewerProps) {
         </CardContent>
       </Card>
 
-      {/* Moral/Lesson Card */}
+
       {story.moral && (
-        <Card className="bg-gradient-to-r from-amber-50 to-yellow-50 border-amber-200">
+        <Card className="bg-blue-100">
           <CardContent className="p-6">
             <div className="flex gap-4 items-start">
-              <div className="bg-amber-500 p-2 rounded-lg flex-shrink-0">
+              <div className="bg-blue-900 p-2 rounded-lg flex-shrink-0">
                 <Lightbulb className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-amber-900 mb-2">
+                <h3 className="font-bold text-lg text-blue-900 mb-2">
                   {kidsMode ? 'What We Learned' : 'Story Moral'}
                 </h3>
-                <p className="text-amber-800 text-base leading-relaxed">
+                <p className="text-blue-950 text-base leading-relaxed">
                   {story.moral}
                 </p>
               </div>

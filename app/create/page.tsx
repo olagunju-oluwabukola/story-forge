@@ -12,13 +12,65 @@ import { ArrowLeft, Baby } from 'lucide-react';
 import Link from 'next/link';
 
 const TEMPLATES = [
-  { id: 'fantasy', name: 'Fantasy', emoji: '🧙‍♂️', color: 'from-purple-500 to-pink-500' },
-  { id: 'horror', name: 'Horror', emoji: '👻', color: 'from-gray-700 to-black' },
-  { id: 'comedy', name: 'Comedy', emoji: '😂', color: 'from-yellow-500 to-orange-500' },
-  { id: 'scifi', name: 'Sci-Fi', emoji: '🚀', color: 'from-blue-500 to-purple-600' },
-  { id: 'adventure', name: 'Adventure', emoji: '⛰️', color: 'from-green-500 to-teal-600' },
-  { id: 'mystery', name: 'Mystery', emoji: '🔍', color: 'from-indigo-600 to-purple-700' },
+  {
+    id: 'fantasy',
+    name: 'Fantasy',
+    emoji: '🧙‍♂️',
+    color: 'from-purple-500 to-pink-500',
+    desc: 'A magical world full of wizards and quests'
+  },
+  {
+    id: 'horror',
+    name: 'Horror',
+    emoji: '👻',
+    color: 'from-gray-700 to-black',
+    desc: 'Spooky tales that send shivers down your spine'
+  },
+  {
+    id: 'comedy',
+    name: 'Comedy',
+    emoji: '😂',
+    color: 'from-yellow-500 to-orange-500',
+    desc: 'Funny stories guaranteed to make you laugh'
+  },
+  {
+    id: 'scifi',
+    name: 'Sci-Fi',
+    emoji: '🚀',
+    color: 'from-blue-500 to-purple-600',
+    desc: 'Futuristic adventures and space explorations'
+  },
+  {
+    id: 'adventure',
+    name: 'Adventure',
+    emoji: '⛰️',
+    color: 'from-green-500 to-teal-600',
+    desc: 'Exciting journeys full of action and discovery'
+  },
+  {
+    id: 'mystery',
+    name: 'Mystery',
+    emoji: '🔍',
+    color: 'from-indigo-600 to-purple-700',
+    desc: 'Intriguing tales with twists and secrets'
+  },
+  {
+    id: 'romance',
+    name: 'Romance',
+    emoji: '💖',
+    color: 'from-pink-400 to-red-500',
+    desc: 'Heartwarming stories of love and connection'
+  },
+  {
+    id: 'historical',
+    name: 'Historical',
+    emoji: '🏰',
+    color: 'from-yellow-800 to-red-900',
+    desc: 'Tales set in the past, full of intrigue and legacy'
+  },
 ];
+
+
 
 export default function CreatePage() {
   const router = useRouter();
@@ -42,8 +94,8 @@ export default function CreatePage() {
   const isComplete = character && setting && twist;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 py-8 px-4">
-      <div className="max-w-5xl mx-auto space-y-8">
+    <div className=" py-8 px-4">
+      <div className="max-w-7xl mx-auto space-y-8 ">
         <div className="flex items-center justify-between">
           <Link href="/">
             <Button variant="ghost" size="sm">
@@ -64,36 +116,68 @@ export default function CreatePage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-2">
             Build Your Story
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 mt-4 md:mt-6">
             Select your story elements and let's craft a fable magic✨
           </p>
         </div>
 
         <div>
-          <h2 className="text-xl font-semibold mb-4 text-gray-700">
+          <h2 className="text-xl md:text-3xl font-semibold mb-4  my-10 md:my-16">
             Choose Story Template
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {TEMPLATES.map((temp) => (
-              <Card
-                key={temp.id}
-                onClick={() => setTemplate(temp.id)}
-                className={`cursor-pointer transition-all hover:shadow-lg ${
-                  template === temp.id ? 'ring-2 ring-blue-500' : ''
-                }`}
-              >
-                <CardContent className="p-4 text-center">
-                  <div className={`text-3xl mb-2 bg-gradient-to-br ${temp.color} bg-clip-text text-transparent`}>
-                    {temp.emoji}
-                  </div>
-                  <p className="text-sm font-medium">{temp.name}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 ">
+  {TEMPLATES.map((temp) => (
+    <div
+      key={temp.id}
+      className={`w-48 h-32 perspective cursor-pointer`}
+      onClick={() => setTemplate(temp.id)}
+    >
+      <div
+        className={`
+          relative w-full h-full transition-transform duration-500
+          transform-style-3d
+          hover:rotate-y-180
+        `}
+      >
+
+        <Card
+          className={`absolute w-full h-full backface-hidden transition-all hover:shadow-lg ${
+            template === temp.id ? 'ring-2 ring-blue-500' : ''
+          }`}
+          style={{
+            backdropFilter: 'blur(8px)',
+            background: 'rgba(59,130,246,0.15)',
+            borderRadius: '1.5rem',
+          }}
+        >
+          <CardContent className="flex flex-col items-center justify-center gap-2 p-4">
+            <div className={`text-3xl bg-gradient-to-br ${temp.color} bg-clip-text text-transparent`}>
+              {temp.emoji}
+            </div>
+            <p className="font-semibold text-gray-800">{temp.name}</p>
+          </CardContent>
+        </Card>
+
+
+        <Card
+          className="absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center"
+          style={{
+            backdropFilter: 'blur(8px)',
+            background: 'rgba(59,130,246,0.2)',
+            borderRadius: '1.5rem',
+          }}
+        >
+          <CardContent className="text-center p-4">
+            <p className="text-sm text-gray-800 font-medium">{temp.desc || 'Short description'}</p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
 
         <CharacterSelect
@@ -113,11 +197,27 @@ export default function CreatePage() {
           kidsMode={kidsMode}
         />
 
-        <GenerateButton
-          onClick={handleGenerate}
-          disabled={!isComplete}
-        />
+{isComplete && (
+  <GenerateButton
+    onClick={handleGenerate}
+  />
+)}
 
+
+<style jsx>{`
+  .perspective {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+`}</style>
 
         {!isComplete && (
           <div className="text-center text-sm text-gray-500">

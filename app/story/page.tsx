@@ -9,7 +9,7 @@ import StoryAudio from '@/components/story-audio';
 import { Button } from '@/components/ui/button';
 import { Card, } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ArrowLeft, RefreshCw, Copy, BookmarkPlus, BookMarked } from 'lucide-react';
+import { Loader2, ArrowLeft, RefreshCw, Copy, BookmarkPlus, BookMarked, ChevronRight, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
 interface SavedStory {
@@ -84,12 +84,12 @@ function StoryContent() {
     const savedStories: SavedStory[] = JSON.parse(savedStoriesStr);
 
     if (saved) {
-      // Remove from saved
+
       const updated = savedStories.filter((s) => s.title !== story.title);
       localStorage.setItem('stories', JSON.stringify(updated));
       setSaved(false);
     } else {
-      // Add to saved
+
       const storyData: SavedStory = {
         title: story.title,
         story: story.story,
@@ -115,9 +115,9 @@ function StoryContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 flex items-center justify-center">
+      <div className="min-h-screen  flex items-center justify-center">
         <div className="text-center space-y-4">
-          <Loader2 className="w-16 h-16 animate-spin mx-auto text-purple-600" />
+          <Loader2 className="w-16 h-16 animate-spin mx-auto text-blue-700" />
           <p className="text-xl font-medium text-gray-700">
             Crafting your story...
           </p>
@@ -160,13 +160,13 @@ function StoryContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 py-8 px-4">
+    <div className="min-h-screen  py-8 px-4">
       <div className="max-w-4xl mx-auto space-y-6">
-        {/* Header Actions */}
+
         <div className="flex items-center justify-between flex-wrap gap-3">
           <Link href="/create">
             <Button variant="outline" size="sm">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
           </Link>
@@ -186,7 +186,7 @@ function StoryContent() {
               onClick={handleSave}
               variant={saved ? "default" : "outline"}
               size="sm"
-              className={saved ? "bg-green-600 hover:bg-green-700" : ""}
+              className={saved ? "bg-blue-700" : ""}
             >
               {saved ? (
                 <>
@@ -207,23 +207,22 @@ function StoryContent() {
           </div>
         </div>
 
-        {/* Cover Card */}
+
         <Card className="overflow-hidden">
-          <div className={`h-48 bg-gradient-to-br ${coverGradient} flex items-center justify-center`}>
+          <div className={`h-48 bg-blue-700 flex items-center justify-center`}>
             <h1 className="text-4xl font-bold text-white text-center px-6">
               {story.title}
             </h1>
+
           </div>
-        </Card>
-
-        {/* Story Content */}
-        <StoryViewer story={story} kidsMode={kidsMode} />
-
-        {/* Template Badge */}
-        <div className="text-center text-sm text-gray-500">
-          Genre: {template.charAt(0).toUpperCase() + template.slice(1)}
+  <div className="text-center text-sm text-gray-500">
+          <span className='font-semibold'> Genre: </span>{template.charAt(0).toUpperCase() + template.slice(1)}
           {kidsMode && " • Kids Mode"}
         </div>
+        </Card>
+
+        <StoryViewer story={story} kidsMode={kidsMode} />
+
       </div>
     </div>
   );
@@ -232,8 +231,8 @@ function StoryContent() {
 export default function StoryPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 flex items-center justify-center">
-        <Loader2 className="w-12 h-12 animate-spin text-purple-600" />
+      <div className="min-h-screen  flex items-center justify-center">
+        <Loader2 className="w-12 h-12 animate-spin text-blue-700" />
       </div>
     }>
       <StoryContent />
