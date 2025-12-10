@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, Github, Twitter, Instagram, Mail } from "lucide-react";
+import {  Github, Twitter, Instagram, Linkedin,  } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -10,7 +10,7 @@ export default function Footer() {
 
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 font-bold text-2xl">
-              <Sparkles className="text-blue-700" />
+
               StoryForge
             </Link>
             <p className="text-gray-600 max-w-xs text-sm leading-relaxed">
@@ -18,21 +18,20 @@ export default function Footer() {
               twists — and bring your imagination to life.
             </p>
 
-            {/* Socials */}
             <div className="flex gap-3">
-              <Link href="#">
+              <Link href="https://github.com/olagunju-oluwabukola">
                 <Github className="h-5 w-5 text-gray-700 hover:text-blue-700" />
               </Link>
-              <Link href="#">
+              <Link href="https://x.com/ofeyishayomi3">
                 <Twitter className="h-5 w-5 text-gray-700 hover:text-blue-700" />
               </Link>
-              <Link href="#">
-                <Instagram className="h-5 w-5 text-gray-700 hover:text-blue-700" />
+              <Link href="https://www.linkedin.com/in/oluwabukola-olagunju-434512229/">
+                <Linkedin className="h-5 w-5 text-gray-700 hover:text-blue-700" />
               </Link>
             </div>
           </div>
 
-          {/* Product */}
+
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Product</h3>
             <ul className="space-y-3 text-gray-600 text-sm">
@@ -43,7 +42,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Templates */}
+
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Templates</h3>
             <ul className="space-y-3 text-gray-600 text-sm">
@@ -55,7 +54,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
+
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Stay Updated</h3>
             <p className="text-gray-600 text-sm mb-4">
@@ -79,7 +78,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
+
         <div className="border-t mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
           <p>
             © {new Date().getFullYear()} StoryForge. All rights reserved.

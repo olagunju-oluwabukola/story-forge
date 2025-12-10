@@ -14,10 +14,10 @@ export default function HowItWorks() {
         </div>
 
         <div className="lg:w-1/2 space-y-6 ">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
             How Does It Work?
           </h2>
-          <p className="text-gray-700 text-lg">
+          <p className="text-gray-700 text-sm  md:text-lg text-justify">
             StoryForge uses <span className="font-semibold ">Grok AI</span> to help you generate stories effortlessly.
             Simply provide a prompt or idea,the  AI will craft your story in seconds.
             You can save your stories, export them as PDFs, and even convert them to speech

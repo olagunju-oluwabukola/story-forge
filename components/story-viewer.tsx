@@ -17,6 +17,7 @@ export default function StoryViewer({ story, kidsMode }: StoryViewerProps) {
               className={`
                 whitespace-pre-line
                 leading-relaxed
+                text-justify
                 ${kidsMode ? 'text-xl' : 'text-lg'}
                 text-gray-800
               `}
@@ -42,7 +43,7 @@ export default function StoryViewer({ story, kidsMode }: StoryViewerProps) {
                 <h3 className="font-bold text-lg text-blue-900 mb-2">
                   {kidsMode ? 'What We Learned' : 'Story Moral'}
                 </h3>
-                <p className="text-blue-950 text-base leading-relaxed">
+                <p className="text-blue-950 text-base leading-relaxed text-justify">
                   {story.moral}
                 </p>
               </div>

@@ -27,7 +27,7 @@ export default function Header() {
   }`}
 
     >
-      <div className="container mx-auto max-w-7xl px- py-6 flex items-center justify-between">
+      <div className="container mx-auto max-w-7xl px-4 py-6 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2 font-bold text-xl"
@@ -88,7 +88,7 @@ export default function Header() {
 
             <Link href="/create" onClick={closeMenu}>
               <Button
-                className="bg-gradient-to-r from-purple-600 to-pink-600 w-full"
+                className="bg-blue-700  hover:bg-blue-700 w-full"
               >
                 Create Story
               </Button>

@@ -104,12 +104,12 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       <FadeInWhenVisible>
-           <div className="container mx-auto px-4 pt-32 text-center max-w-4xl">
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
+           <div className="container mx-auto px-4 pt-14 md:pt-24 lg:pt-32 text-center max-w-4xl">
+        <h1 className="text-3xl md:text-6xl font-bold text-gray-900 leading-tight">
           AI Story Builder — Create Stories With One Click
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-700 mt-6">
+        <p className="text-sm md:text-lg lg:text-xl text-gray-700 mt-6">
           Instantly turn your ideas into original stories. Just type a prompt
           and let AI build a unique story filled with imagination and creativity.
         </p>

@@ -128,11 +128,11 @@ export default function CreatePage() {
           <h2 className="text-xl md:text-3xl font-semibold mb-4  my-10 md:my-16">
             Choose Story Template
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-8 space-y-4 ">
   {TEMPLATES.map((temp) => (
     <div
       key={temp.id}
-      className={`w-48 h-32 perspective cursor-pointer`}
+      className={`md:w-48 md: h-32 w-40 perspective cursor-pointer`}
       onClick={() => setTemplate(temp.id)}
     >
       <div

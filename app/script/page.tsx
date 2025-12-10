@@ -78,7 +78,7 @@ export default function ScriptGeneratorPage() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <Film className="w-10 h-10 text-indigo-600" />
-              <h1 className="text-4xl font-bold text-gray-800">Script Generator</h1>
+              <h1 className="text-xl md:text-4xl font-bold text-gray-800">Script Generator</h1>
             </div>
             <p className="text-gray-600">Create professional movie scripts with AI</p>
           </div>
@@ -100,7 +100,7 @@ export default function ScriptGeneratorPage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <Textarea
-                    placeholder="Example: A detective discovers that her partner is actually from the future, sent back to prevent a crime that hasn't happened yet. As they race against time, she must decide whether to trust him or turn him in..."
+                    placeholder="Example: A detective discovers that her partner is actually from the future, as they race against time, she must decide whether to trust him or turn him in..."
                     value={prompt}
                     onChange={(e) => setPrompt(e.target.value)}
                     rows={8}
