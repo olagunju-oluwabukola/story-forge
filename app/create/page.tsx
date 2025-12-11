@@ -8,7 +8,7 @@ import TwistSelect from '@/components/twist-select';
 import GenerateButton from '@/components/generate-button';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowLeft, Baby } from 'lucide-react';
+import {  Baby, ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 
 const TEMPLATES = [
@@ -99,7 +99,7 @@ export default function CreatePage() {
         <div className="flex items-center justify-between">
           <Link href="/">
             <Button variant="ghost" size="sm">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+              <ChevronLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
           </Link>
@@ -120,7 +120,7 @@ export default function CreatePage() {
             Build Your Story
           </h1>
           <p className="text-gray-600 mt-4 md:mt-6">
-            Select your story elements and let's craft a fable magic✨
+            Select your story elements and craft a fable magic✨
           </p>
         </div>
 

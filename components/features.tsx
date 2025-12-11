@@ -51,7 +51,7 @@ export default function FeatureCards() {
               <div className="w-12 h-12 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full mb-4">
                 <feature.icon className="w-6 h-6" />
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">{feature.title}</h3>
+              <h3 className="text-xl font-semibold mb-2 ">{feature.title}</h3>
               <p className="text-gray-700 text-base">{feature.description}</p>
             </div>
           ))}
