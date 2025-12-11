@@ -114,7 +114,6 @@ Return ONLY a JSON object (no markdown, no backticks):
       );
     }
 
-    // Parse JSON response
     try {
       const cleanContent = content
         .replace(/```json\n?/g, '')
@@ -124,7 +123,7 @@ Return ONLY a JSON object (no markdown, no backticks):
 
       return NextResponse.json(parsed);
     } catch (e) {
-      // Fallback: extract using regex
+
       const titleMatch = content.match(/"title":\s*"([^"]+)"/);
       const storyMatch = content.match(/"story":\s*"((?:[^"\\]|\\.)*)"/);
       const moralMatch = content.match(/"moral":\s*"([^"]+)"/);

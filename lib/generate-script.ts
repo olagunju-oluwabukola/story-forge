@@ -40,7 +40,6 @@ function isScriptRelated(prompt: string): boolean {
 export async function generateScript(params: ScriptParams): Promise<string> {
   const { prompt, scriptType, genre } = params;
 
-  // Client-side validation
   if (!isScriptRelated(prompt)) {
     throw new Error(
       "I can only generate scripts and screenplays. Your request doesn't appear to be related to script generation. " +
@@ -58,7 +57,6 @@ export async function generateScript(params: ScriptParams): Promise<string> {
   try {
     console.log(`Generating ${scriptType} script...`);
 
-    // Call the Next.js API route instead of Groq directly
     const response = await fetch('/api/generate-script', {
       method: 'POST',
       headers: {
@@ -78,7 +76,7 @@ export async function generateScript(params: ScriptParams): Promise<string> {
       throw new Error('No script content returned from server');
     }
 
-    // Validate script format
+
     const hasScriptFormat = /INT\.|EXT\.|FADE IN:|FADE OUT:/i.test(data.script);
 
     if (!hasScriptFormat) {

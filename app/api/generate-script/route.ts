@@ -63,7 +63,6 @@ export async function POST(request: NextRequest) {
   try {
     const { prompt, scriptType, genre } = await request.json();
 
-    // Validate input
     if (!prompt || !scriptType || !genre) {
       return NextResponse.json(
         { error: 'Missing required fields: prompt, scriptType, or genre' },

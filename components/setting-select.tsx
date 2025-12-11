@@ -14,7 +14,7 @@ import {
   Sun,
   Candy,
   Gift
-} from 'lucide-react'; // Import the icons you want
+} from 'lucide-react';
 
 const SETTINGS = [
   { id: 'forest', name: 'Enchanted Forest', Icon: TreesIcon},

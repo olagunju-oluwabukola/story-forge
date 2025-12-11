@@ -22,7 +22,7 @@ export default function StoryAudio({ story }: StoryAudioProps) {
 
     checkSupport();
 
-    // Cleanup on unmount
+
     return () => {
       if (typeof window !== 'undefined' && window.speechSynthesis) {
         window.speechSynthesis.cancel();
@@ -34,16 +34,15 @@ export default function StoryAudio({ story }: StoryAudioProps) {
     if (!supported) return;
 
     if (paused) {
-      // Resume
+
       window.speechSynthesis.resume();
       setPaused(false);
       setSpeaking(true);
     } else if (speaking) {
-      // Pause
       window.speechSynthesis.pause();
       setPaused(true);
     } else {
-      // Start new
+
       const utterance = new SpeechSynthesisUtterance(story);
       utterance.rate = 0.9;
       utterance.pitch = 1;

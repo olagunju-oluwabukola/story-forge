@@ -49,10 +49,8 @@ export default function Home() {
   const handleGenerate = async () => {
     if (!promptInput.trim()) return;
 
-    // Clear previous errors
     setError("");
 
-    // Validate the prompt before generating
     const validation = validateStoryPrompt(promptInput);
     if (!validation.valid) {
       setError(validation.message || "Invalid story prompt");
@@ -65,7 +63,7 @@ export default function Home() {
     try {
       const story = await generateQuickStory(promptInput);
       setGeneratedStory(story);
-      setError(""); // Clear any errors on success
+      setError("");
     } catch (error) {
       console.error("Failed to generate story:", error);
       const errorMessage = error instanceof Error ? error.message : "Failed to generate story. Please try again.";

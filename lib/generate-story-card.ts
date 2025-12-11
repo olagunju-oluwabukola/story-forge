@@ -66,7 +66,7 @@ export function validateStoryPrompt(prompt: string): { valid: boolean; message?:
 
 export async function generateStoryPrompts(): Promise<StoryPrompt[]> {
   try {
-    // Call the Next.js API route instead of Groq directly
+
     const response = await fetch('/api/generate-prompts', {
       method: 'GET',
     });
@@ -90,7 +90,7 @@ export async function generateStoryPrompts(): Promise<StoryPrompt[]> {
 }
 
 export async function generateQuickStory(prompt: string): Promise<string> {
-  // Strict validation before generating
+
   const validation = validateStoryPrompt(prompt);
   if (!validation.valid) {
     throw new Error(validation.message);
@@ -99,7 +99,6 @@ export async function generateQuickStory(prompt: string): Promise<string> {
   try {
     console.log('Generating story from prompt:', prompt);
 
-    // Call the Next.js API route instead of Groq directly
     const response = await fetch('/api/generate-quick-story', {
       method: 'POST',
       headers: {
@@ -119,7 +118,6 @@ export async function generateQuickStory(prompt: string): Promise<string> {
       throw new Error('No story content returned from server');
     }
 
-    // Validate story content
     const hasNarrativeElements = /\b(said|thought|walked|ran|looked|felt|saw|heard|knew|realized|discovered|found)\b/i.test(data.story);
     const hasDialogue = data.story.includes('"') || data.story.includes('"') || data.story.includes('"');
 

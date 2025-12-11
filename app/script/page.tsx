@@ -6,7 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Badge } from '@/components/ui/badge';
-import { Loader2, Film, Download, Copy, Sparkles, ArrowLeft, ChevronLeft } from 'lucide-react';
+import { Loader2, Film, Download, Copy, Sparkles,  ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { generateScript } from '@/lib/generate-script';
 
