@@ -171,7 +171,7 @@ export default function Home() {
             <div className="mt-6 p-6 rounded-xl border border-blue-100">
               <h3 className="font-bold text-lg text-gray-900 mb-3">Your Story:</h3>
               <div className="prose prose-sm max-w-none">
-                <p className="whitespace-pre-line text-gray-800 leading-relaxed">
+                <p className="whitespace-pre-line text-gray-800 leading-relaxed text-justify">
                   {generatedStory}
                 </p>
               </div>
